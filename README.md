@@ -1,3 +1,45 @@
+<!-- ELLMSHA FORK INTRO -->
+# BMAD Method — eLLMsha integration fork
+
+**Structured requirements, architecture, story and review workflows.**
+
+| Provenance | Value |
+| --- | --- |
+| Original project | [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) |
+| Upstream baseline | `bda3c59` |
+| Baseline revision | `bda3c5929f672019b90f39a3ea27259d35d00974` |
+| Harness patch label | 1 |
+
+## Why this fork exists
+
+The `ellmsha-skills` integration stores shared workflow artifacts in project memory for continuation across chats and subagents.
+
+```mermaid
+flowchart LR
+  Harness[eLLMsha harness] --> Component[BMAD Method]
+  Component --> Work[Project work]
+```
+
+## Build and integration
+
+Read `ELLM_SHA_INTEGRATION.md`; use only the workflows needed for the task.
+
+The parent repository's installer and integration checks are authoritative for the bundled product. A passing upstream test suite alone does not prove eLLMsha integration acceptance. This local documentation update does not publish a release or make unpublished revisions available remotely.
+
+## Contributing
+
+Keep changes focused, preserve upstream licenses and notices, and separate an upstream version update from a harness patch. Record both in the parent application's About provenance. Do not commit credentials, user profiles or commercial project contents. Validate behavior on the platform being changed.
+
+## License and credits
+
+See [LICENSE](LICENSE). Original authors and their license terms remain unchanged. **Moroz Inc.** maintains the eLLMsha integration.
+
+---
+
+## Upstream documentation
+
+<!-- END ELLMSHA FORK INTRO -->
+
 ![BMad Method](banner-bmad-method.png)
 
 
