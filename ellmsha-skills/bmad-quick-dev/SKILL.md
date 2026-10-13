@@ -17,13 +17,16 @@ All paths below are relative to `<prefix>` in TencentDB L2. `prd.md`, `architect
 
 ## Workflow
 
-1. Retrieve relevant decisions and inspect the affected code. Establish the requested outcome and observable acceptance criteria; clarify only blockers.
-2. Reuse an existing change ID from memory or the user, otherwise choose a stable descriptive ID. Record a short plan proportional to the change.
-3. Implement using the existing architecture, run meaningful focused checks, and review the actual diff for correctness and regressions.
-4. Save the result, decisions, changed code locations, verification evidence and unresolved risks. Source changes remain in the repository; the implementation note lives in memory.
+This adapter changes artifact storage only. Follow the original step workflow in `reference/`; do not replace it with an immediate implement-and-report loop.
 
-**Primary artifact:** `implementation-notes/<change-id>.md`. Use a stable descriptive `<story-id>`, `<review-id>` or `<change-id>` where shown, and return its full verified TencentDB path.
+- Respect the current request's scope. “Inspect”, “explain”, or “prepare a spec” does not authorize implementation. An already approved specification resumes through its original state route; an explicit user waiver of a checkpoint for this task also persists. General permission to fix something is not approval of a newly drafted specification.
+- Bind `{planning_artifacts}` and `{implementation_artifacts}` to `<prefix>`, `{sprint_status}` to `<prefix>sprint-status.yaml`, and resolve language/date from the current user/runtime. Do not run repository customization/setup scripts or create ambient AI memory files.
+- Read **fully** `reference/step-01-clarify-and-route.md`, then load only the next step it names. Paths between step files resolve inside `reference/`. Preserve recognized spec states and original route conditions. The one-shot route is limited to its explicit, unambiguous, zero-blast-radius change; it still reaches review. A small-looking change alone is not a waiver.
+- At the planning checkpoint, save/read back the draft and HALT for `[A] Approve` / `[E] Edit`. After approval, reread the saved artifact and honor external edits before marking `ready-for-dev`. Do not auto-approve a newly created draft or infer approval from invoking the skill.
+- Review is mandatory as specified in `reference/step-04-review.md`: independent blind hunter, edge-case hunter, and acceptance auditor, without parent conversation context. If delegation is unavailable, store the three review prompts and report the original workflow's external-review requirement; a self-review does not satisfy it. Restrict any reversion to this task's own changes.
+- A ready spec has explicit file/action tasks, dependency order, testable Given/When/Then acceptance, and no unresolved intent. Target one user-facing goal and 900–1600 tokens; the original split/keep checkpoints allow the user's override.
+- Apply the TencentDB protocol to **all** artifact operations in the references, including spec status transitions, deferred work, cached context and review prompts. “Exists”, “read from disk” and artifact timestamps mean scoped memory list/read metadata, not filesystem substitutes. Source code and user-provided input files remain filesystem operations.
 
-## Optional method references
+**Primary artifact:** the verified `<prefix>spec-<slug>.md` selected by step 1, preserved across planning, implementation and review. Link it as `[Open spec](ellmsha-memory://artifact?path=<percent-encoded-full-path>)`. This is a memory preview, not a local file. Keep the full logical path visible if the client cannot open the link.
 
-Read only the template or checklist needed for the current step, relative to this skill directory: `reference/spec-template.md`; `reference/step-04-review.md`. The references preserve upstream methodology; their filesystem writes, activation scripts and local artifact discovery are replaced by the TencentDB protocol above. Do not load the entire upstream workflow or unrelated artifacts.
+For QA, report each requested scenario against observed evidence; unit/build success does not establish device/UI behavior. After repeated unchanged native observations, reassess the target/focus preconditions before retrying. Where duplicate detection is part of the scenario, use a new owned fixture so a duplicate result is not mistaken for a fresh success.
